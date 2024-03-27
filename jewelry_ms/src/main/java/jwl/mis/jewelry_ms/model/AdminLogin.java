@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 public class AdminLogin {
     //Fields
     @Id
+    @GeneratedValue
+    private Long id;
     private String ad_Id;
     private String ad_Uname;
     private  String ad_Pwd;
