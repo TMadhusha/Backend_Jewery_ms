@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Backend_Jewery_ms.iml" filepath="$PROJECT_DIR$/.idea/Backend_Jewery_ms.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jewelry_ms/jewelry_ms.iml" filepath="$PROJECT_DIR$/jewelry_ms/jewelry_ms.iml" />
     </modules>
   </component>
 </project>
