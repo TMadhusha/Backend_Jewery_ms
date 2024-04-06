@@ -11,8 +11,6 @@ import java.util.Map;
 
 @ControllerAdvice
 public class EmployeeNotFoundAdvice {
-
-
     @ResponseBody
     @ExceptionHandler(EmployeeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
