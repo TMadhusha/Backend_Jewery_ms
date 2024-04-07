@@ -1,5 +1,6 @@
 package jwl.mis.jewelry_ms.controller;
 
+import jwl.mis.jewelry_ms.exception.CustomerNotFoundException;
 import jwl.mis.jewelry_ms.model.Customer;
 import jwl.mis.jewelry_ms.repository.CustomerRepository;
 import org.apache.catalina.User;
@@ -21,5 +22,11 @@ public class CustomerController {
     @GetMapping("/getcustomer")
     List<Customer> getAllCustomers(){
         return customerRepository.findAll();
+    }
+
+    @GetMapping("/customer/{id}")
+    Customer getCustomerById(@PathVariable Long id){
+        return customerRepository.findById(id)
+                .orElseThrow(()->new CustomerNotFoundException(id));
     }
 }
