@@ -9,7 +9,7 @@ public class Attendance {
     //fields
     @Id
     private String att_id;
-    private Long emp_id;
+    private String emp_id;
     private String date;
     private String check_In;
     private String check_Out;
@@ -23,11 +23,11 @@ public class Attendance {
         this.att_id = att_id;
     }
 
-    public Long getEmp_id() {
+    public String getEmp_id() {
         return emp_id;
     }
 
-    public void setEmp_id(Long emp_id) {
+    public void setEmp_id(String emp_id) {
         this.emp_id = emp_id;
     }
 

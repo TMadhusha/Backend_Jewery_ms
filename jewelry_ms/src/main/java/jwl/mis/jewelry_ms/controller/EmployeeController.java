@@ -33,27 +33,27 @@ public class EmployeeController {
     }
 
    //update the specific values by using the Id
-//    @PutMapping("/employee/{id}")
-//    Employee updateEmployee(@RequestBody Employee newEmployee,@PathVariable Long id){
-//        return employeeRepository.findById(id)
-//                .map(employee -> {
-//                    employee.setFirstname(newEmployee.getFirstname());
-//                    employee.setLastname(newEmployee.getLastname());
-//                    employee.setAddress(newEmployee.getAddress());
-//                    employee.setEmail(newEmployee.getEmail());
-//                    employee.setPhoneNo(newEmployee.getPhoneNo());
-//                    employee.setRole(newEmployee.getRole());
-//                    return employeeRepository.save(employee);
-//                }).orElseThrow(()->new EmployeeNotFoundException(id));
-//    }
-//
-//    //delete the specific Id
-//    @DeleteMapping("/employee/{id}")
-//    String deleteEmployee(@PathVariable Long id){
-//        if(!employeeRepository.existsById(id)){
-//            throw new EmployeeNotFoundException(id);
-//        }
-//        employeeRepository.deleteById(id);
-//        return "Employee with ID "+id+ " has been deleted succesfully";
-//    }
+    @PutMapping("/employee/{emp_id}")
+    Employee updateEmployee(@RequestBody Employee newEmployee,@PathVariable String emp_id){
+        return employeeRepository.findById(emp_id)
+                .map(employee -> {
+                    employee.setFirstname(newEmployee.getFirstname());
+                    employee.setLastname(newEmployee.getLastname());
+                    employee.setAddress(newEmployee.getAddress());
+                    employee.setEmail(newEmployee.getEmail());
+                    employee.setPhoneNo(newEmployee.getPhoneNo());
+                    employee.setRole(newEmployee.getRole());
+                    return employeeRepository.save(employee);
+                }).orElseThrow(()->new EmployeeNotFoundException(emp_id));
+    }
+
+    //delete the specific Id
+    @DeleteMapping("/employee/{emp_id}")
+    String deleteEmployee(@PathVariable String emp_id){
+        if(!employeeRepository.existsById(emp_id)){
+            throw new EmployeeNotFoundException(emp_id);
+        }
+        employeeRepository.deleteById(emp_id);
+        return "Employee with ID "+emp_id+ " has been deleted succesfully";
+    }
 }
