@@ -24,9 +24,24 @@ public class CustomerController {
         return customerRepository.findAll();
     }
 
-    @GetMapping("/customer/{id}")
-    Customer getCustomerById(@PathVariable Long id){
-        return customerRepository.findById(id)
-                .orElseThrow(()->new CustomerNotFoundException(id));
+    @GetMapping("/customer/{cus_id}")
+    Customer getCustomerById(@PathVariable Long cus_id){
+        return customerRepository.findById(cus_id)
+                .orElseThrow(()->new CustomerNotFoundException(cus_id));
+    }
+
+    @PutMapping("/customer/{cus_id}")
+    Customer updateCustomer(@RequestBody Customer newCustomer, @PathVariable Long cus_id) {
+        return customerRepository.findById(cus_id)
+                .map(customer -> {
+                    customer.setFirstname(newCustomer.getFirstname());
+                    customer.setLastname(newCustomer.getLastname());
+                    customer.setEmail(newCustomer.getEmail());
+                    customer.setAddress(newCustomer.getAddress());
+                    customer.setPhoneNo(newCustomer.getPhoneNo());
+                    customer.setHearAbout(newCustomer.getHearAbout());
+                    return customerRepository.save(customer);
+                })
+                .orElseThrow(() -> new CustomerNotFoundException(cus_id));
     }
 }
