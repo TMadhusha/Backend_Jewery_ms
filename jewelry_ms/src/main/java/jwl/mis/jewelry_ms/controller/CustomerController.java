@@ -44,4 +44,13 @@ public class CustomerController {
                 })
                 .orElseThrow(() -> new CustomerNotFoundException(cus_id));
     }
+
+    @DeleteMapping("/customer/{cus_id}")
+    String deleteCustomer(@PathVariable Long cus_id){
+        if(!customerRepository.existsById(cus_id)){
+            throw new CustomerNotFoundException(cus_id);
+        }
+        customerRepository.deleteById(cus_id);
+        return "Customer with id "+ cus_id +"has been deleted success.";
+    }
 }
