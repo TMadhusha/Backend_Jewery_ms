@@ -34,6 +34,10 @@ public class AttendanceController {
     Attendance updateAttendance(@RequestBody Attendance newAttendance,@PathVariable String att_id){
         return attendanceRepository.findById(att_id)
                 .map(attendance -> {
+//                    attendance.setAtt_id(newAttendance.getAtt_id());
+//                    attendance.setEmp_id(newAttendance.getEmp_id());
+//                    attendance.setDate(newAttendance.getDate());
+//                    attendance.setCheck_In(newAttendance.getCheck_In());
                     attendance.setCheck_Out(newAttendance.getCheck_Out());
                     return attendanceRepository.save(attendance);
                 }).orElseThrow(()->new AttendanceNotFoundException(att_id));
