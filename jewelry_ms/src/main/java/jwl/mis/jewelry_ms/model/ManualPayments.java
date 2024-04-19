@@ -1,4 +1,4 @@
 package jwl.mis.jewelry_ms.model;
 
-public class Payment {
+public class ManualPayments {
 }
