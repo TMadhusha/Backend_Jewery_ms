@@ -10,6 +10,7 @@ public class Attendance {
     @Id
     private String att_id;
     private String emp_id;
+    private String month;
     private String date;
     private String check_In;
     private String check_Out;
@@ -29,6 +30,14 @@ public class Attendance {
 
     public void setEmp_id(String emp_id) {
         this.emp_id = emp_id;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public String getDate() {
