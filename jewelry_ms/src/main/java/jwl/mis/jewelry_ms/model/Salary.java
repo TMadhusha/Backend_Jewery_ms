@@ -2,6 +2,8 @@ package jwl.mis.jewelry_ms.model;
 
 import jakarta.persistence.*;
 
+import java.time.Month;
+
 @Entity
 public class Salary {
     @Id
@@ -9,7 +11,7 @@ public class Salary {
     @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
     private Long id;
     private String emp_id;
-    private String month;
+    private Month month;
     private double totalWorkingHours;
     private double totalAmount;
 
@@ -29,11 +31,11 @@ public class Salary {
         this.emp_id = emp_id;
     }
 
-    public String getMonth() {
+    public Month getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(Month month) {
         this.month = month;
     }
 
