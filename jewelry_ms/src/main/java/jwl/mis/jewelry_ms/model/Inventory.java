@@ -1,8 +1,7 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class Inventory {
     @Id
@@ -10,11 +9,10 @@ public class Inventory {
     private Long item_id;
     private String itemName;
     private String type;
-    private byte[] image;
     private Double actualPrice;
     private String description;
     private Double sellingPrice;
-    private Boolean availableStock;
+    private int availableStock;
 
     public Long getItem_id() {
         return item_id;
@@ -67,19 +65,16 @@ public class Inventory {
         this.sellingPrice = sellingPrice;
     }
 
-    public Boolean getAvailableStock() {
+
+
+
+
+    public int getAvailableStock() {
         return availableStock;
     }
 
-    public void setAvailableStock(Boolean availableStock) {
+    public void setAvailableStock(int availableStock) {
         this.availableStock = availableStock;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 }
