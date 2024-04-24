@@ -2,7 +2,9 @@ package jwl.mis.jewelry_ms.controller;
 
 
 
+import jwl.mis.jewelry_ms.exception.EmployeeNotFoundException;
 import jwl.mis.jewelry_ms.exception.UserNotFoundException;
+import jwl.mis.jewelry_ms.model.Employee;
 import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +36,15 @@ public class SupplierController {
 //        return supplierRepository.findById(sup_id)
 //               .orElseThrow(()->new UserNotFoundException(sup_id));
 //    }
+@GetMapping("/update/{sup_id}") //for lodesupplier
+Supplier getSupplierById(@PathVariable("sup_id") Long sup_id){
+    return supplierRepository.findById(sup_id)
+            .orElseThrow(()->new UserNotFoundException(sup_id));
+}
 
 
     @PutMapping("/get-supplier/{sup_id}")
-    Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable("sup_id") Long sup_id){
+    Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable Long sup_id){
 
 
         return supplierRepository.findById(sup_id)
@@ -65,12 +72,21 @@ public class SupplierController {
 //        return null;
 //    }
 
-    @DeleteMapping("/delete-supplier/{sup_id}")
-    String deletesup(@PathVariable("sup_id") Long sup_id ){
+//    @DeleteMapping("/delete-supplier/{sup_id}")
+//    String deletesup(@PathVariable("sup_id") Long sup_id ){
+//        if(!supplierRepository.existsById(sup_id)){
+//            throw new UserNotFoundException(sup_id);
+//        }
+//        supplierRepository.deleteById(sup_id);
+//        return sup_id+" "+" was deleted";
+//    }
+
+    @DeleteMapping("/supplier/{sup_id}")
+    String deletesup(@PathVariable Long sup_id){
         if(!supplierRepository.existsById(sup_id)){
-            throw new UserNotFoundException(sup_id);
-        }
-        supplierRepository.deleteById(sup_id);
+//            throw new UserNotFoundException(sup_id);
+            return "User Not Found";
+        }else supplierRepository.deleteById(sup_id);
         return sup_id+" "+" was deleted";
     }
 
