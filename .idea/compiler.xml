@@ -10,9 +10,6 @@
         <module name="jewelry_ms" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="jewelry_ms" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
