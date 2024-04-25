@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class EmployeeNotFoundAdvice {
+public class AttendanceNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(EmployeeNotFoundException.class)
+    @ExceptionHandler(AttendanceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String,String> exceptionHandler(EmployeeNotFoundException exception){
+    public Map<String,String> exceptionHandler(AttendanceNotFoundException exception){
         Map<String,String> errorMap=new HashMap<>();
         errorMap.put("ErrorMessage",exception.getMessage());
 
