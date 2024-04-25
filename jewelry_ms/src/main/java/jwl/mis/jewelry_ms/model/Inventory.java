@@ -39,8 +39,6 @@ public class Inventory {
         this.type = type;
     }
 
-
-
     public Double getActualPrice() {
         return actualPrice;
     }
@@ -64,10 +62,6 @@ public class Inventory {
     public void setSellingPrice(Double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
-
-
-
-
 
     public int getAvailableStock() {
         return availableStock;
