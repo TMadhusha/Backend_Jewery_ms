@@ -1,9 +1,8 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;  // Import Date class
 
 @Entity
 public class Customer {
@@ -16,6 +15,23 @@ public class Customer {
     private String address;
     private String phoneNo;
     private String hearAbout;
+    @Temporal(TemporalType.DATE)
+    private Date registration_date;
+
+    public Customer(Long cus_id, String firstname, String lastname, String email, String address, String phoneNo, String hearAbout, Date registration_date) {
+        this.cus_id = cus_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.address = address;
+        this.phoneNo = phoneNo;
+        this.hearAbout = hearAbout;
+        this.registration_date = registration_date;
+    }
+
+    public Customer() {
+
+    }
 
     public Long getCus_id() {
         return cus_id;
@@ -71,5 +87,13 @@ public class Customer {
 
     public void setHearAbout(String hearAbout) {
         this.hearAbout = hearAbout;
+    }
+
+    public Date getRegistration_date() {
+        return registration_date;
+    }
+
+    public void setRegistration_date(Date registration_date) {
+        this.registration_date = registration_date;
     }
 }

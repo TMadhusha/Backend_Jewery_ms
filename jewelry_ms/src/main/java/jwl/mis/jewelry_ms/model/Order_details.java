@@ -10,36 +10,29 @@ public class Order_details {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
-
-    @ManyToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
-
     private Date order_date;
-    private double payment_amount;
-    private String payment_status;
-    private Date pickup_date;
-    private String payment_method;
+    private Double total_amount;
+
     private String order_status;
+    private Date pickup_date;
+    private String notes;
 
+    @ManyToOne
+    @JoinColumn(name = "cus_id")
+    private Customer customer;
 
-    // Constructors
-    public Order_details() {
+    public Order_details(Long order_id, Date order_date, Double total_amount, String order_status, Date pickup_date, String notes, Customer customer) {
+        this.order_id = order_id;
+        this.order_date = order_date;
+        this.total_amount = total_amount;
+        this.order_status = order_status;
+        this.pickup_date = pickup_date;
+        this.notes = notes;
+        this.customer = customer;
     }
 
-    public Order_details(Long order_id, Reservation reservation, Item item, Date order_date, double payment_amount, String payment_status, Date pickup_date, String payment_method, String order_status) {
-        this.order_id = order_id;
-        this.reservation = reservation;
-        this.item = item;
-        this.order_date = order_date;
-        this.payment_amount = payment_amount;
-        this.payment_status = payment_status;
-        this.pickup_date = pickup_date;
-        this.payment_method = payment_method;
-        this.order_status = order_status;
+    public Order_details() {
+
     }
 
     public Long getOrder_id() {
@@ -50,22 +43,6 @@ public class Order_details {
         this.order_id = order_id;
     }
 
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     public Date getOrder_date() {
         return order_date;
     }
@@ -74,20 +51,20 @@ public class Order_details {
         this.order_date = order_date;
     }
 
-    public double getPayment_amount() {
-        return payment_amount;
+    public Double getTotal_amount() {
+        return total_amount;
     }
 
-    public void setPayment_amount(double payment_amount) {
-        this.payment_amount = payment_amount;
+    public void setTotal_amount(Double total_amount) {
+        this.total_amount = total_amount;
     }
 
-    public String getPayment_status() {
-        return payment_status;
+    public String getOrder_status() {
+        return order_status;
     }
 
-    public void setPayment_status(String payment_status) {
-        this.payment_status = payment_status;
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 
     public Date getPickup_date() {
@@ -98,19 +75,19 @@ public class Order_details {
         this.pickup_date = pickup_date;
     }
 
-    public String getPayment_method() {
-        return payment_method;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public String getOrder_status() {
-        return order_status;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setOrder_status(String order_status) {
-        this.order_status = order_status;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
