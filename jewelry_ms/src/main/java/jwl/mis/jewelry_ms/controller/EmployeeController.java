@@ -42,7 +42,6 @@ public class EmployeeController {
                     employee.setAddress(newEmployee.getAddress());
                     employee.setEmail(newEmployee.getEmail());
                     employee.setPhoneNo(newEmployee.getPhoneNo());
-                    employee.setRole(newEmployee.getRole());
                     return employeeRepository.save(employee);
                 }).orElseThrow(()->new EmployeeNotFoundException(emp_id));
     }
