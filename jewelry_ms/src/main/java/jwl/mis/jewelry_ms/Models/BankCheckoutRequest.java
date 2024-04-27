@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class BankCheckoutRequest {
+    private String username;
     private String cardnumber;
-    private String accountnumber;
     private String backnumber;
 
 }

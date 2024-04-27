@@ -5,6 +5,6 @@ import jwl.mis.jewelry_ms.model.Bank;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BankRepository extends JpaRepository<Bank,Long> {
-    Bank findBankByAccountnumber(String accountnumber);
+    Bank findBankByUsername(String username);
 
 }

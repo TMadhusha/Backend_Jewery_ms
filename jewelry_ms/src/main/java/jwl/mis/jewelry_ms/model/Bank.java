@@ -13,7 +13,6 @@ public class Bank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bannkid;
     private String username;
-    private String accountnumber;
     private String cardnumber;
     private String backnumber;
     private Integer balance;
