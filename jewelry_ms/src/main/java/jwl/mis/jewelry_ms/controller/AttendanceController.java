@@ -37,7 +37,6 @@ public class AttendanceController {
                 .map(attendance -> {
 //                    attendance.setAtt_id(newAttendance.getAtt_id());
 //                    attendance.setEmp_id(newAttendance.getEmp_id());
-                    //attendance.setMonth(newAttendance.getMonth());
                    //attendance.setDate(newAttendance.getDate());
 //                    attendance.setCheck_In(newAttendance.getCheck_In());
                     attendance.setCheck_Out(newAttendance.getCheck_Out());

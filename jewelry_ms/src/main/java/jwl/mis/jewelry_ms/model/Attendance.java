@@ -10,10 +10,10 @@ public class Attendance {
 //    @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
     private Long att_id;
     private String emp_id;
-    private String month;
     private String date;
     private String check_In;
     private String check_Out;
+    private String status;
 
     //getter and setter
 
@@ -32,14 +32,6 @@ public class Attendance {
 
     public void setEmp_id(String emp_id) {
         this.emp_id = emp_id;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
     }
 
     public String getDate() {
@@ -66,5 +58,12 @@ public class Attendance {
         this.check_Out = check_Out;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 
