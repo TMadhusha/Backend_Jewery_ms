@@ -23,13 +23,13 @@ public class InventoryController {
     }
 
     @GetMapping("/inventory/{item_id}")
-    Inventory getInventoryByItemId(@PathVariable Long item_id){
+    Inventory getInventoryByItemId(@PathVariable String item_id){
         return inventoryRepository.findById(item_id)
                 .orElseThrow(()->new InventoryNotFoundException(item_id));
     }
 
     @PutMapping("/inventory/{item_id}")
-    Inventory updateInventory(@RequestBody Inventory newInventory,@PathVariable Long item_id){
+    Inventory updateInventory(@RequestBody Inventory newInventory,@PathVariable String item_id){
         System.out.println("test");
         return inventoryRepository.findById(item_id)
                 .map(inventory -> {
@@ -45,7 +45,7 @@ public class InventoryController {
     }
 
     @DeleteMapping("/inventory/{item_id}")
-    String deleteInventory(@PathVariable Long item_id){
+    String deleteInventory(@PathVariable String item_id){
         if(!inventoryRepository.existsById(item_id)){
             throw new InventoryNotFoundException(item_id);
         }

@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Inventory {
     @Id
-    @GeneratedValue
-    private Long item_id;
+    private String item_id;
     private String itemName;
     private String type;
     private Double actualPrice;
@@ -14,14 +13,13 @@ public class Inventory {
     private Double sellingPrice;
     private int availableStock;
 
-    public Long getItem_id() {
+    public String getItem_id() {
         return item_id;
     }
 
-    public void setItem_id(Long item_id) {
+    public void setItem_id(String item_id) {
         this.item_id = item_id;
     }
-
 
     public String getItemName() {
         return itemName;
