@@ -1,25 +1,28 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Attendance {
     //fields
     @Id
-    private String att_id;
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+//    @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
+    private Long att_id;
     private String emp_id;
     private String date;
     private String check_In;
     private String check_Out;
+    private String status;
 
     //getter and setter
-    public String getAtt_id() {
+
+
+    public Long getAtt_id() {
         return att_id;
     }
 
-    public void setAtt_id(String att_id) {
+    public void setAtt_id(Long att_id) {
         this.att_id = att_id;
     }
 
@@ -55,5 +58,12 @@ public class Attendance {
         this.check_Out = check_Out;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 
