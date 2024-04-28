@@ -1,29 +1,29 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue
-    private Long id;
+    private String emp_id;
     private String firstname;
     private String lastname;
-    private String dob;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
     private String address;
     private String nic;
     private String email;
     private String phoneNo;
     private String role;
 
-    public Long getEmpId() {
-        return id;
+    public String getEmp_id() {
+        return emp_id;
     }
 
-    public void setEmpId(Long empId) {
-        this.id = empId;
+    public void setEmp_id(String emp_id) {
+        this.emp_id = emp_id;
     }
 
     public String getFirstname() {
@@ -42,11 +42,11 @@ public class Employee {
         this.lastname = lastname;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
