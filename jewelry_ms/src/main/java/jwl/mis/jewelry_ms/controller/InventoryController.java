@@ -30,6 +30,7 @@ public class InventoryController {
 
     @PutMapping("/inventory/{item_id}")
     Inventory updateInventory(@RequestBody Inventory newInventory,@PathVariable Long item_id){
+        System.out.println("test");
         return inventoryRepository.findById(item_id)
                 .map(inventory -> {
                     inventory.setItemName(newInventory.getItemName());
