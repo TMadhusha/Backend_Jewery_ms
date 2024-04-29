@@ -51,9 +51,11 @@ Supplier getSupplierById(@PathVariable("sup_id") Long sup_id){
                 .map(supplier->{
                     supplier.setSupname(newSupplier.getSupname());
                     supplier.setItemid(newSupplier.getItemid());
+                    supplier.setAddress(newSupplier.getAddress());
                     supplier.setPhonenumber(newSupplier.getPhonenumber());
                     supplier.setQuantity(newSupplier.getQuantity());
                     supplier.setEmail(newSupplier.getEmail());
+
                     return supplierRepository.save(supplier);
                 }).orElseThrow(()->new UserNotFoundException(sup_id));
     }
