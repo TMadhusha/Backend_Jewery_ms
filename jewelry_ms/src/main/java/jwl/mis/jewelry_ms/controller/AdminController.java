@@ -4,11 +4,15 @@ import  jwl.mis.jewelry_ms.Models.AdminLoginRequest;
 import jwl.mis.jewelry_ms.exception.UserNotFoundException;
 import jwl.mis.jewelry_ms.model.Admin;
 
+import jwl.mis.jewelry_ms.model.Employee;
 import jwl.mis.jewelry_ms.repository.AdminRepository;
+import jwl.mis.jewelry_ms.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -17,11 +21,21 @@ public class AdminController {
 
     @Autowired
     private AdminRepository adminRepository;
-    //Admin Register
+    @Autowired
+    private EmployeeRepository employeeRepository;
+         //Admin Register
     @PostMapping("/register")
-    Admin newAdmin(@RequestBody Admin newAdmin){
+    Admin newAdmin(@RequestBody Admin newAdmin ){
+
         return adminRepository.save(newAdmin);
+
     }
+
+
+
+
+
+
     //Delete An admin
     @DeleteMapping("/delete-supplier/{adminid}")
     String deleteadmin(@PathVariable("adminid") Long adminid ){
@@ -40,6 +54,8 @@ public class AdminController {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
+
+
         // Find the admin by username
         Admin admin = adminRepository.findAdminByUsername(username);
 
@@ -53,6 +69,8 @@ public class AdminController {
             }
         }
     }
+
+
 
 }
 
