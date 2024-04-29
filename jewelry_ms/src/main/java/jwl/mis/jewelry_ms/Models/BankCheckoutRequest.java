@@ -6,6 +6,8 @@ import lombok.Data;
 public class BankCheckoutRequest {
     private String username;
     private String cardnumber;
-    private String backnumber;
+    private String cvv;
+    private String month;
+    private String year;
 
 }

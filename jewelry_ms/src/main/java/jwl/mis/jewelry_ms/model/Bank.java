@@ -11,11 +11,14 @@ public class Bank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long bannkid;
+    private Long bankid;
     private String username;
     private String cardnumber;
-    private String backnumber;
+    private String cvv;
+    private String month;
+    private String year;
     private Integer balance;
+    private String accountnumber;
 
 
 }

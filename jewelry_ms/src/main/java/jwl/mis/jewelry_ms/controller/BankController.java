@@ -27,8 +27,10 @@ public class BankController {
     @PostMapping("/checkout")
     public ResponseEntity<String> checkout(@RequestBody BankCheckoutRequest checkoutRequest) {
         String username = checkoutRequest.getUsername();
-        String backnumber = checkoutRequest.getBacknumber();
+        String cvv = checkoutRequest.getCvv();
         String cardnumber = checkoutRequest.getCardnumber();
+        String month= checkoutRequest.getMonth();
+        String year= checkoutRequest.getYear();
 
         // Find the admin by username
         Bank bank = bankRepository.findBankByUsername(username);
@@ -36,7 +38,7 @@ public class BankController {
         if (bank == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid AccountNumber or Backnumber or Cardnumber");
         } else {
-            if (bank.getUsername().equals(username)&&bank.getBacknumber().equals(backnumber)&&bank.getCardnumber().equals(cardnumber)) {
+            if (bank.getUsername().equals(username)&&bank.getCvv().equals(cvv)&&bank.getCardnumber().equals(cardnumber)&&bank.getMonth().equals(month)&&bank.getYear().equals(year)) {
                 //return ResponseEntity.ok("Login successful");
                         return ResponseEntity.ok("Details Approved");
 
