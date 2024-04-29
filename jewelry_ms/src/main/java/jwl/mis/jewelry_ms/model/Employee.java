@@ -1,8 +1,8 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Employee {
@@ -10,7 +10,8 @@ public class Employee {
     private String emp_id;
     private String firstname;
     private String lastname;
-    private String dob;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
     private String address;
     private String nic;
     private String email;
@@ -41,11 +42,11 @@ public class Employee {
         this.lastname = lastname;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

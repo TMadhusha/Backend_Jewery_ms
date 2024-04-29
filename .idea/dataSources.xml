@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="jewelryms@localhost" uuid="d0a55d2a-3b33-4477-a9eb-9ddd3a5b7fe9">
+    <data-source source="LOCAL" name="jewelryms@localhost" uuid="9cf93c42-c53f-4bdf-bc45-888c3c7d7cde">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/jewelry_ms/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/jewelryms</jdbc-url>
       <jdbc-additional-properties>
