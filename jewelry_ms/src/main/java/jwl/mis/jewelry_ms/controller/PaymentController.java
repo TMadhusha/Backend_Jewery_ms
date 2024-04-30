@@ -38,9 +38,13 @@ public class PaymentController {
         return paymentRepository.findAll();
     }
 
+    //load payment to payable
+    @GetMapping("/load-payable/{paymentid}") //for lodesupplier
+    Payment gettotalById(@PathVariable("paymentid") Long paymentid){
+        return paymentRepository.findById(paymentid)
+                .orElseThrow(()->new UserNotFoundException(paymentid));}
 
-
-//load payment
+//load payment to liability
     @GetMapping("/update-liability/{paymentid}") //for lodesupplier
     Payment getPaymentrById(@PathVariable("paymentid") Long paymentid){
         return paymentRepository.findById(paymentid)
