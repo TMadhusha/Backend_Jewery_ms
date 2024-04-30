@@ -62,7 +62,9 @@ public class PaymentController {
                     return paymentRepository.save(payment);
                 })
                 .orElseThrow(() -> new UserNotFoundException(paymentid));
+
     }
+
 
    // update payable
     @PutMapping("/payable/{paymentid}")
@@ -70,7 +72,15 @@ public class PaymentController {
         return paymentRepository.findById(paymentid)
                 .map(payment -> {
                     payment.setTotal(newPayment.getTotal());
-                    payment.setComment(newPayment.getComment()); // Set comment on payment instance
+                    payment.setPaid(newPayment.getPaid());
+                    payment.setComment(newPayment.getComment());
+
+                    // Calculate balance
+                    Long total = newPayment.getTotal();
+                    Long paid = newPayment.getPaid();
+                    Long balance = total - paid;
+                    payment.setBalance((long) balance);
+
                     return paymentRepository.save(payment);
                 })
                 .orElseThrow(() -> new UserNotFoundException(paymentid));
