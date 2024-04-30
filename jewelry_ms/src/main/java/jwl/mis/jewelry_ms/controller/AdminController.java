@@ -24,11 +24,28 @@ public class AdminController {
     @Autowired
     private EmployeeRepository employeeRepository;
          //Admin Register
+//    @PostMapping("/register")
+//    Admin newAdmin(@RequestBody Admin newAdmin ){
+//
+//        return adminRepository.save(newAdmin);
+//
+//    }
+
     @PostMapping("/register")
-    Admin newAdmin(@RequestBody Admin newAdmin ){
+    ResponseEntity<?> newAdmin(@RequestBody Admin newAdmin) {
+        String emp_id = newAdmin.getId(); // Get the emp_id from the new admin object
 
-        return adminRepository.save(newAdmin);
+        // Check if emp_id exists in the employee table
+        Optional<Employee> optionalEmployee = employeeRepository.findById(emp_id);
 
+        if (optionalEmployee.isPresent()) {
+            // If emp_id exists, save the new admin
+            Admin savedAdmin = adminRepository.save(newAdmin);
+            return ResponseEntity.ok(savedAdmin);
+        } else {
+            // If emp_id does not exist, return an error response
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Employee ID not found. Please enter a valid Employee ID.");
+        }
     }
 
 
