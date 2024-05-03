@@ -2,6 +2,8 @@ package jwl.mis.jewelry_ms.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class Attendance {
     //fields
@@ -9,8 +11,8 @@ public class Attendance {
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
 //    @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
     private Long att_id;
-    private String emp_id;
-    private String date;
+    private String empId;
+    private LocalDate date;
     private String check_In;
     private String check_Out;
     private String status;
@@ -26,19 +28,19 @@ public class Attendance {
         this.att_id = att_id;
     }
 
-    public String getEmp_id() {
-        return emp_id;
+    public String getEmpId() {
+        return empId;
     }
 
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

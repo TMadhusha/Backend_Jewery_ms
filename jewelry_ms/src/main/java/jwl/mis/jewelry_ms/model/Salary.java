@@ -10,7 +10,7 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
     @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
     private Long id;
-    private String emp_id;
+    private String empId;
     private int year;
     private int month;
     private double totalWorkingHours;
@@ -24,12 +24,12 @@ public class Salary {
         this.id = id;
     }
 
-    public String getEmp_id() {
-        return emp_id;
+    public String getEmpId() {
+        return empId;
     }
 
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 
     public int getYear() {
