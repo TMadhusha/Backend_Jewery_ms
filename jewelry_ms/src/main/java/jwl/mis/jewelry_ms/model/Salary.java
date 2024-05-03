@@ -11,7 +11,8 @@ public class Salary {
     @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
     private Long id;
     private String emp_id;
-    private Month month;
+    private int year;
+    private int month;
     private double totalWorkingHours;
     private double totalAmount;
 
@@ -31,11 +32,19 @@ public class Salary {
         this.emp_id = emp_id;
     }
 
-    public Month getMonth() {
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(Month month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 
