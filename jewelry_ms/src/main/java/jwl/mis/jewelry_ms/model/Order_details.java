@@ -9,26 +9,35 @@ public class Order_details {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
-
+    @Temporal(TemporalType.DATE)
     private Date order_date;
     private Double total_amount;
 
     private String order_status;
+    @Temporal(TemporalType.DATE)
     private Date pickup_date;
     private String notes;
+
+    private String quantity;
 
     @ManyToOne
     @JoinColumn(name = "cus_id")
     private Customer customer;
 
-    public Order_details(Long order_id, Date order_date, Double total_amount, String order_status, Date pickup_date, String notes, Customer customer) {
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item Item;
+
+    public Order_details(Long order_id, Date order_date, Double total_amount, String order_status, Date pickup_date, String notes, String quantity, Customer customer, jwl.mis.jewelry_ms.model.Item item) {
         this.order_id = order_id;
         this.order_date = order_date;
         this.total_amount = total_amount;
         this.order_status = order_status;
         this.pickup_date = pickup_date;
         this.notes = notes;
+        this.quantity = quantity;
         this.customer = customer;
+        Item = item;
     }
 
     public Order_details() {
@@ -83,11 +92,27 @@ public class Order_details {
         this.notes = notes;
     }
 
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public jwl.mis.jewelry_ms.model.Item getItem() {
+        return Item;
+    }
+
+    public void setItem(jwl.mis.jewelry_ms.model.Item item) {
+        Item = item;
     }
 }
