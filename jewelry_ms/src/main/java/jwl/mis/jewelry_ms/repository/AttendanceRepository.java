@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
 
-    List<Attendance> findByEmpIdAndDateBetween(String empId, LocalDate start, LocalDate end);
 }
