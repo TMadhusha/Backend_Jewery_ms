@@ -16,6 +16,7 @@ public class Attendance {
     private LocalDate date;
     private LocalTime check_In;
     private LocalTime check_Out;
+    private double workingHours;
     private String status;
 
     //getter and setter
@@ -59,6 +60,14 @@ public class Attendance {
 
     public void setCheck_Out(LocalTime check_Out) {
         this.check_Out = check_Out;
+    }
+
+    public double getWorkingHours() {
+        return workingHours;
+    }
+
+    public void setWorkingHours(double workingHours) {
+        this.workingHours = workingHours;
     }
 
     public String getStatus() {
