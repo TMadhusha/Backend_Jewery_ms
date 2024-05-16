@@ -27,5 +27,10 @@ public class SalaryController {
         return salaryRepository.save(newSalary);
     }
 
+    @GetMapping("/salaryG")
+    List<Salary> getAllSalary(){
+        return salaryRepository.findAll();
+    }
+
 
 }
