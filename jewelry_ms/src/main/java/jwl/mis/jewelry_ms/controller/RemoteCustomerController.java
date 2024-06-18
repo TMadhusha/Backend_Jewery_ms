@@ -1,5 +1,6 @@
 package jwl.mis.jewelry_ms.controller;
 
+import jwl.mis.jewelry_ms.exception.RemoteCustomersNotFoundException;
 import jwl.mis.jewelry_ms.model.RemoteCustomerLoginRequest;
 import jwl.mis.jewelry_ms.model.RemoteCustomers;
 import jwl.mis.jewelry_ms.repository.RemoteCustomerRepository;
@@ -52,6 +53,33 @@ public class RemoteCustomerController {
     @GetMapping("/remoteCustomersG")
     List<RemoteCustomers> getAllRemoteCustomers(){
         return remoteCustomerRepository.findAll();
+    }
+
+    @GetMapping("/remoteCustomersGetById/{cus_id}")
+    RemoteCustomers getById(@PathVariable Long cus_id){
+        return remoteCustomerRepository.findById(cus_id)
+                .orElseThrow(()-> new RemoteCustomersNotFoundException(cus_id));
+    }
+
+    @PutMapping("/updateRemoteCustomers/{Id")
+    RemoteCustomers updateRemoteCustomers(@RequestBody RemoteCustomers newRemoteCustomer,@PathVariable Long cus_id){
+        try {
+            RemoteCustomers existingRemoteCustomer=remoteCustomerRepository.findById(Long.valueOf(cus_id))
+                    .orElseThrow(()->new RemoteCustomersNotFoundException(cus_id));
+
+            //update remote customers
+            existingRemoteCustomer.setFirstname(newRemoteCustomer.getFirstname());
+            existingRemoteCustomer.setLastname(newRemoteCustomer.getLastname());
+            existingRemoteCustomer.setEmail(newRemoteCustomer.getEmail());
+            existingRemoteCustomer.setAddress(newRemoteCustomer.getAddress());
+            existingRemoteCustomer.setPhoneNo(newRemoteCustomer.getPhoneNo());
+            existingRemoteCustomer.setUsername(newRemoteCustomer.getUsername());
+            existingRemoteCustomer.setDp(newRemoteCustomer.getDp());
+
+            return remoteCustomerRepository.save(existingRemoteCustomer);
+        } catch (RemoteCustomersNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("/remoteCustomerLogin")
