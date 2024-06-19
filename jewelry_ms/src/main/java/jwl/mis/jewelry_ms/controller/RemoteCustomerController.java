@@ -61,7 +61,7 @@ public class RemoteCustomerController {
                 .orElseThrow(()-> new RemoteCustomersNotFoundException(cus_id));
     }
 
-    @PutMapping("/updateRemoteCustomers/{Id")
+    @PutMapping("/updateRemoteCustomers/{cus_id}")
     RemoteCustomers updateRemoteCustomers(@RequestBody RemoteCustomers newRemoteCustomer,@PathVariable Long cus_id){
         try {
             RemoteCustomers existingRemoteCustomer=remoteCustomerRepository.findById(Long.valueOf(cus_id))
@@ -79,6 +79,16 @@ public class RemoteCustomerController {
             return remoteCustomerRepository.save(existingRemoteCustomer);
         } catch (RemoteCustomersNotFoundException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @DeleteMapping("/deleteRemoteCustomers/{cus_id}")
+    String deleteRemoteCustomers(@PathVariable Long cus_id){
+        if (!remoteCustomerRepository.existsById(cus_id)) {
+            throw new RemoteCustomersNotFoundException(cus_id);
+        }else{
+            remoteCustomerRepository.deleteById(cus_id);
+            return "Deleted";
         }
     }
 
