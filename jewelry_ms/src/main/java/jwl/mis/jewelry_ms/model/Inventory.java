@@ -1,17 +1,25 @@
 package jwl.mis.jewelry_ms.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Inventory {
     @Id
     private String item_id;
     private String itemName;
     private String type;
-    private Double actualPrice;
+    private double actualPrice;
     private String description;
-    private Double sellingPrice;
+    private double sellingPrice;
     private int availableStock;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
 
     public String getItem_id() {
         return item_id;
@@ -37,11 +45,11 @@ public class Inventory {
         this.type = type;
     }
 
-    public Double getActualPrice() {
+    public double getActualPrice() {
         return actualPrice;
     }
 
-    public void setActualPrice(Double actualPrice) {
+    public void setActualPrice(double actualPrice) {
         this.actualPrice = actualPrice;
     }
 
@@ -53,11 +61,11 @@ public class Inventory {
         this.description = description;
     }
 
-    public Double getSellingPrice() {
+    public double getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(Double sellingPrice) {
+    public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
@@ -69,4 +77,11 @@ public class Inventory {
         this.availableStock = availableStock;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

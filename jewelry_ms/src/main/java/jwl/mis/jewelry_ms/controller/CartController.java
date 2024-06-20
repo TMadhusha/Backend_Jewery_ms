@@ -20,6 +20,8 @@ public class CartController {
     Cart newCart(@RequestParam ("image") MultipartFile image,
                  @RequestParam ("itemName") String itemName,
                  @RequestParam ("username") String username,
+                 @RequestParam ("type") String type,
+                 @RequestParam ("description") String description,
                  @RequestParam ("sellingPrice") double sellingPrice,
                  @RequestParam ("quantity") int quantity,
                  @RequestParam ("totalPrice") double totalPrice){
@@ -29,6 +31,8 @@ public class CartController {
             newCart.setImage(image.getBytes());
             newCart.setItemName(itemName);
             newCart.setUsername(username);
+            newCart.setType(type);
+            newCart.setDescription(description);
             newCart.setSellingPrice(sellingPrice);
             newCart.setQuantity(quantity);
             newCart.setTotalPrice(totalPrice);
