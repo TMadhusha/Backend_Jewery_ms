@@ -101,4 +101,6 @@ public class RemoteCustomerController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
+
+
 }
