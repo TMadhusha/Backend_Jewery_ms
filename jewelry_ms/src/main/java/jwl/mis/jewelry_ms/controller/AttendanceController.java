@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -36,13 +37,16 @@ public class AttendanceController {
         return attendanceRepository.findById(att_id)
                 .map(attendance -> {
 //                    attendance.setAtt_id(newAttendance.getAtt_id());
-//                    attendance.setEmp_id(newAttendance.getEmp_id());
+//                    attendance.setEmp_id(newAttendance.getEmpId());
                    //attendance.setDate(newAttendance.getDate());
 //                    attendance.setCheck_In(newAttendance.getCheck_In());
                     attendance.setCheck_Out(newAttendance.getCheck_Out());
+                    attendance.setWorkingHours(newAttendance.getWorkingHours());
                     return attendanceRepository.save(attendance);
                 }).orElseThrow(()->new AttendanceNotFoundException(att_id));
     }
+
+
 
 
 

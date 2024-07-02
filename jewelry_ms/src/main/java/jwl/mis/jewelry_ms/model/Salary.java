@@ -2,17 +2,20 @@ package jwl.mis.jewelry_ms.model;
 
 import jakarta.persistence.*;
 
-import java.time.Month;
+import java.time.LocalDate;
 
 @Entity
 public class Salary {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
-    @SequenceGenerator(name = "id_seq", sequenceName = "id_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String emp_id;
-    private Month month;
+    private String empId;
+
+    private String role;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double totalWorkingHours;
+    private double hourlyRate;
     private double totalAmount;
 
     public Long getId() {
@@ -23,20 +26,36 @@ public class Salary {
         this.id = id;
     }
 
-    public String getEmp_id() {
-        return emp_id;
+    public String getEmpId() {
+        return empId;
     }
 
-    public void setEmp_id(String emp_id) {
-        this.emp_id = emp_id;
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 
-    public Month getMonth() {
-        return month;
+    public String getRole() {
+        return role;
     }
 
-    public void setMonth(Month month) {
-        this.month = month;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public double getTotalWorkingHours() {
@@ -45,6 +64,14 @@ public class Salary {
 
     public void setTotalWorkingHours(double totalWorkingHours) {
         this.totalWorkingHours = totalWorkingHours;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 
     public double getTotalAmount() {
