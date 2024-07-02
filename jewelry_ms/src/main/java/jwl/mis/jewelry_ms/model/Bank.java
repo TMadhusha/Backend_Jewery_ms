@@ -21,4 +21,7 @@ public class Bank {
     private String accountnumber;
 
 
+    public String getAccountNumber() {
+        return accountnumber;
+    }
 }
