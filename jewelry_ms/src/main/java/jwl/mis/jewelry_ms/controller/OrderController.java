@@ -1,0 +1,55 @@
+package jwl.mis.jewelry_ms.controller;
+
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+import jwl.mis.jewelry_ms.model.Customer;
+import jwl.mis.jewelry_ms.model.Order;
+import jwl.mis.jewelry_ms.repository.OrderRepository;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Properties;
+
+@RestController
+@CrossOrigin("http://localhost:3000")
+public class OrderController {
+
+    @Autowired
+    private OrderRepository orderRepository;
+    @GetMapping("/getorder")
+    List<Order> getAllOrder(){
+        return orderRepository.findAll();
+    }
+
+
+    @PutMapping("/orders/{orderId}")
+    public Order updateOrderStatus(@PathVariable Long orderId, @RequestBody Order updatedOrder) {
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setOrderStatus(updatedOrder.getOrderStatus());
+            return orderRepository.save(order);
+        } else {
+            throw new RuntimeException("Order not found with id " + orderId);
+        }
+    }
+
+
+    @GetMapping("/orders/customer/{orderId}")
+    public Customer getCustomerDetailsByOrderId(@PathVariable Long orderId) {
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            return order.getCustomer();
+        } else {
+            throw new RuntimeException("Order not found with id " + orderId);
+        }
+    }
+
+
+
+}
