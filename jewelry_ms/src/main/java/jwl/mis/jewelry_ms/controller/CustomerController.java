@@ -40,6 +40,7 @@ public class CustomerController {
                     customer.setAddress(newCustomer.getAddress());
                     customer.setPhoneNo(newCustomer.getPhoneNo());
                     customer.setHearAbout(newCustomer.getHearAbout());
+                    customer.setRegistration_date(newCustomer.getRegistration_date());
                     return customerRepository.save(customer);
                 })
                 .orElseThrow(() -> new CustomerNotFoundException(cus_id));
