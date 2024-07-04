@@ -1,50 +1,44 @@
 package jwl.mis.jewelry_ms.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 
 @Entity
 @Getter
 @Setter
-@Table(name = "orders") // Specify the table name explicitly
+@Data
+@Table(name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id") // Map to the actual column name in the database
-    private long orderId; // Use camelCase for consistency
+    @Column(name = "order_id")
+    private long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "cus_id") // Name of the foreign key column in the orders table
+    @JoinColumn(name = "cus_id")
     private Customer customer;
 
-
     @Temporal(TemporalType.DATE)
-    @Column(name = "order_date") // Map to the actual column name in the database
+    @Column(name = "order_date")
     private Date orderDate;
 
-    @Column(name = "total_amount") // Map to the actual column name in the database
+    @Column(name = "total_amount")
     private double totalAmount;
 
-    @Column(name = "order_status") // Map to the actual column name in the database
+    @Column(name = "order_status")
     private String orderStatus;
 
-    @Column(name = "payment_method") // Map to the actual column name in the database
+    @Column(name = "payment_method")
     private String paymentMethod;
 
-    @Column(name = "billing_address") // Map to the actual column name in the database
+    @Column(name = "billing_address")
     private String billingAddress;
 
-
-    // Constructors
     public Order(long orderId, Customer customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress) {
         this.orderId = orderId;
         this.customer = customer;
