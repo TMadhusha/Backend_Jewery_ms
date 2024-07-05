@@ -19,9 +19,9 @@ public class Order {
     @Column(name = "order_id")
     private long orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "cus_id")
-    private Customer customer;
+
+    @Column(name = "cus_id")
+    private Long cus_id;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "order_date")
@@ -39,9 +39,9 @@ public class Order {
     @Column(name = "billing_address")
     private String billingAddress;
 
-    public Order(long orderId, Customer customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress) {
+    public Order(long orderId, Long cus_id, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress) {
         this.orderId = orderId;
-        this.customer = customer;
+        this.cus_id = cus_id;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
