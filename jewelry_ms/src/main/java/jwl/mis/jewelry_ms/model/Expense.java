@@ -15,6 +15,5 @@ public class Expense {
     private Date date;
     private String description;
     private double amount;
-
-
+    private String type;
 }
