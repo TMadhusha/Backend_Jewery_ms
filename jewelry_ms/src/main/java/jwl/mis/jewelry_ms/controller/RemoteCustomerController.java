@@ -33,19 +33,19 @@ public class RemoteCustomerController {
                                        @RequestParam ("password") String password,
                                        @RequestParam ("dp") MultipartFile dp){
         RemoteCustomers newRemoteCustomers=new RemoteCustomers();
-
-        try{
-            newRemoteCustomers.setFirstname(firstname);
-            newRemoteCustomers.setLastname(lastname);
-            newRemoteCustomers.setAddress(address);
-            newRemoteCustomers.setEmail(email);
-            newRemoteCustomers.setPhoneNo(phoneNo);
-            newRemoteCustomers.setUsername(username);
-            newRemoteCustomers.setPassword(password);
-            newRemoteCustomers.setDp(dp.getBytes());
-
-        }catch (IOException e){
-            e.printStackTrace();
+        newRemoteCustomers.setFirstname(firstname);
+        newRemoteCustomers.setLastname(lastname);
+        newRemoteCustomers.setAddress(address);
+        newRemoteCustomers.setEmail(email);
+        newRemoteCustomers.setPhoneNo(phoneNo);
+        newRemoteCustomers.setUsername(username);
+        newRemoteCustomers.setPassword(password);
+        if (dp != null) {
+            try {
+                newRemoteCustomers.setDp(dp.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return remoteCustomerRepository.save(newRemoteCustomers);
     }

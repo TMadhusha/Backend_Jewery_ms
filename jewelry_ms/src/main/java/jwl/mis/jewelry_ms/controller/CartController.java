@@ -54,7 +54,7 @@ public class CartController {
                 .orElseThrow(()-> new CartNotFoundException(Id));
     }
 
-    @PutMapping("putCart/{Id}")
+    @PutMapping("/putCart/{Id}")
     Cart updateCart(@RequestBody Cart newCart, @PathVariable Long Id){
         try{
             //Fetch existing cart
