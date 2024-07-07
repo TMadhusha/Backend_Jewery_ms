@@ -52,22 +52,46 @@ public class ExpenseController {
     }
 
     @PutMapping("/updateExpenseById/{expenseId}")
-    Expense updateExpense(@RequestBody Expense newExpense, @PathVariable Long expenseId){
-        try{
-            //Fetch the existing expense
-            Expense existingExpense=expenseRepository.findById(Long.valueOf(expenseId))
-                    .orElseThrow(()->new ExpenseNotFoundException(expenseId));
+    Expense updateExpense(@RequestParam(value = "receipt", required = false) MultipartFile receipt,
+                          @RequestParam("description") String description,
+                          @RequestParam("type") String type,
+                          @RequestParam("amount") double amount,
+                          @PathVariable Long expenseId) {
+        Expense existingExpense = expenseRepository.findById(expenseId)
+                .orElseThrow(() -> new ExpenseNotFoundException(expenseId));
 
-            //Update expense
-            existingExpense.setDescription(newExpense.getDescription());
-            existingExpense.setType(newExpense.getType());
-            existingExpense.setAmount(newExpense.getAmount());
-
-            return expenseRepository.save(existingExpense);
-        } catch (ExpenseNotFoundException e) {
-            throw new RuntimeException(e);
+        existingExpense.setDescription(description);
+        existingExpense.setType(type);
+        existingExpense.setAmount(amount);
+        if (receipt != null) {
+            try {
+                existingExpense.setReceipt(receipt.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        return expenseRepository.save(existingExpense);
     }
+//    Expense updateExpense(@RequestBody Expense newExpense, @PathVariable Long expenseId){
+//        try{
+//            //Fetch the existing expense
+//            Expense existingExpense=expenseRepository.findById(Long.valueOf(expenseId))
+//                    .orElseThrow(()->new ExpenseNotFoundException(expenseId));
+//
+//            //Update expense
+//            existingExpense.setDescription(newExpense.getDescription());
+//            existingExpense.setType(newExpense.getType());
+//            existingExpense.setAmount(newExpense.getAmount());
+//            existingExpense.setReceipt(newExpense.getReceipt());
+//
+//            return expenseRepository.save(existingExpense);
+//        } catch (ExpenseNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+
 
     @DeleteMapping("/deleteExpense/{expenseId}")
     String deleteExpense(@PathVariable Long expenseId){
@@ -75,6 +99,6 @@ public class ExpenseController {
             throw new ExpenseNotFoundException(expenseId);
         }
         expenseRepository.deleteById(expenseId);
-        return "Cart item with id "+ expenseId +" has been deleted sucessfully";
+        return "Expense with id "+ expenseId +" has been deleted sucessfully";
     }
 }
