@@ -57,10 +57,10 @@ Supplier getSupplierById(@PathVariable("sup_id") Long sup_id){
         return supplierRepository.findById(sup_id)
                 .map(supplier->{
                     supplier.setSupname(newSupplier.getSupname());
-                    supplier.setItemid(newSupplier.getItemid());
+                    supplier.setIdNumber(newSupplier.getIdNumber());
                     supplier.setAddress(newSupplier.getAddress());
                     supplier.setPhonenumber(newSupplier.getPhonenumber());
-                    supplier.setQuantity(newSupplier.getQuantity());
+                    supplier.setItemName(newSupplier.getItemName());
                     supplier.setEmail(newSupplier.getEmail());
 
                     return supplierRepository.save(supplier);

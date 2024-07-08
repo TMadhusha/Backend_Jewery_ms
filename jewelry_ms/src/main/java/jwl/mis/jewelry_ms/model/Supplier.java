@@ -17,8 +17,8 @@ public class Supplier {
     private Long sup_id;
     private String supname;
     private String address;
-    private String itemid;
-    private String quantity;
+    private String idNumber;
+    private String itemName;
     private String phonenumber;
     private String email;
 
