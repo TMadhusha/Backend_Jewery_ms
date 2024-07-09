@@ -13,6 +13,11 @@ public class Inventory {
     private Double sellingPrice;
     private int availableStock;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
+
     public String getItem_id() {
         return item_id;
     }
@@ -69,4 +74,12 @@ public class Inventory {
         this.availableStock = availableStock;
     }
 
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
