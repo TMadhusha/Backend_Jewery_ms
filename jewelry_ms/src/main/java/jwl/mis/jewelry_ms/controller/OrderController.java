@@ -1,9 +1,9 @@
 package jwl.mis.jewelry_ms.controller;
 
 
-import jwl.mis.jewelry_ms.model.Customer;
 import jwl.mis.jewelry_ms.model.Order;
 import jwl.mis.jewelry_ms.model.OrderItem;
+import jwl.mis.jewelry_ms.model.RemoteCustomers;
 import jwl.mis.jewelry_ms.repository.OrderItemRepository;
 import jwl.mis.jewelry_ms.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +44,11 @@ public class OrderController {
 
 
     @GetMapping("/orders/customer/{orderId}")
-    public Customer getCustomerDetailsByOrderId(@PathVariable Long orderId) {
+    public RemoteCustomers getCustomerDetailsByOrderId(@PathVariable Long orderId) {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
-            return order.getCustomer();
+           return order.getRemoteCustomers();
         } else {
             throw new RuntimeException("Order not found with id " + orderId);
         }
@@ -59,6 +59,11 @@ public class OrderController {
         return orderItemRepository.findByOrderOrderId(orderId);
     }
 
+    @PostMapping("/save-order")
+    public Order saveOrder(@RequestBody Order order) {
+        // Assuming the frontend sends complete data for the order
+        return orderRepository.save(order);
+    }
 
 
 

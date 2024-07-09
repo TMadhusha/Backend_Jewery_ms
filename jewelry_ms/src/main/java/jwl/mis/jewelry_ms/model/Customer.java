@@ -10,15 +10,18 @@ import java.util.Date;
 @Getter
 @Entity
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cus_id;
+
     private String firstname;
     private String lastname;
     private String email;
     private String address;
     private String phoneNo;
     private String hearAbout;
+
     @Temporal(TemporalType.DATE)
     private Date registration_date;
 
@@ -35,6 +38,4 @@ public class Customer {
 
     public Customer() {
     }
-
-
 }

@@ -10,3 +10,6 @@ public class  JewelryMsApplication {
 		SpringApplication.run(JewelryMsApplication.class, args);
 	}
 }
+
+
+
