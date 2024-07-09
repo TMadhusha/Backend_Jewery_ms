@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 public class Inventory {
     @Id
-    private String item_id;
+    @Column(name = "item_id")
+    private String itemId;
     private String itemName;
     private String type;
     private double actualPrice;

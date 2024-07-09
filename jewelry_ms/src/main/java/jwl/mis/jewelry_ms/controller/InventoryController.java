@@ -62,4 +62,10 @@ public class InventoryController {
         return inventoryRepository.findByType(type);
     }
 
-}
+    @GetMapping("/inventory/sellingPrice/{itemId}")
+    public Double getSellingPriceByItemId(@PathVariable String itemId) {
+        return inventoryRepository.findSellingPriceByItemId(Long.valueOf(itemId));
+    }
+    }
+
+
