@@ -53,6 +53,13 @@ public class CartController {
 //    @GetMapping("/getCartById/{username}")
 //    List<Cart> getByUsername(@PathVariable String username) {
 //        List<Cart> carts = cartRepository.findByUsername(username);
+//    List<Cart> getAllCart(){
+//        return cartRepository.findAll();
+//    }
+//
+//    @GetMapping("/getCartById/{username}")
+//    List<Cart> getByUsername(@PathVariable String username) {
+//       // List<Cart> carts = cartRepository.findByUsername(username);
 //        if (carts.isEmpty()) {
 //            throw new CartNotFoundException(username);
 //        }
