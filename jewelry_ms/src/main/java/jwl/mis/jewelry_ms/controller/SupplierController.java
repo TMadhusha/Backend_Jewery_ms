@@ -10,6 +10,7 @@ import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.PaymentRepository;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,11 +29,31 @@ public class SupplierController {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    @PostMapping("/save-supplier")
-    Supplier newSupplier(@RequestBody Supplier newSupplier){
-        System.out.println(newSupplier);
-        return supplierRepository.save(newSupplier);
+    public SupplierController(SupplierRepository supplierRepository) {
+        this.supplierRepository = supplierRepository;
     }
+
+    @PostMapping("/save-supplier")
+    public ResponseEntity<?> newSupplier(@RequestBody Supplier newSupplier) {
+        // Check if the idNumber already exists
+        Optional<Supplier> existingSupplier = supplierRepository.findByIdNumber(newSupplier.getIdNumber());
+        if (existingSupplier.isPresent()) {
+            // If idNumber already exists, return a bad request response
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("IDNUMBER already in use. Please use a different IDNUMBER.");
+        }
+
+        // If idNumber is unique, proceed to save the supplier
+        try {
+            Supplier savedSupplier = supplierRepository.save(newSupplier);
+            return ResponseEntity.ok(savedSupplier);
+        } catch (DataIntegrityViolationException e) {
+            // Catch any other potential exceptions (though unlikely if idNumber is the only unique constraint)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to save supplier due to internal server error.");
+        }
+    }
+
     @GetMapping("/get-supplier")
     List<Supplier>getAllSupplier(){
         return supplierRepository.findAll();
