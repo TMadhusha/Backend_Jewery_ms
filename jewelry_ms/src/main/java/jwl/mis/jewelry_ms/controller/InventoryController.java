@@ -4,6 +4,9 @@ import jwl.mis.jewelry_ms.model.Inventory;
 import jwl.mis.jewelry_ms.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 
@@ -17,6 +20,7 @@ public class InventoryController {
     Inventory newInventory(@RequestBody Inventory newInventory){
         return inventoryRepository.save(newInventory);
     }
+
     @GetMapping("/inventory")
     List<Inventory> getAllInventory(){
         return inventoryRepository.findAll();

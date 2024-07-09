@@ -28,28 +28,28 @@ public class RemoteCustomerController {
 //        return remoteCustomerRepository.save(newRemotecustomers);
 //    }
 
-    RemoteCustomers newRemoteCustomers(@RequestParam("firstname") String firstname,
-                                       @RequestParam("lastname") String lastname,
-                                       @RequestParam("address") String address,
-                                       @RequestParam("email") String email,
-                                       @RequestParam("phoneNo") String phoneNo,
-                                       @RequestParam("username") String username,
-                                       @RequestParam("password") String password,
-                                       @RequestParam("dp") MultipartFile dp) {
-        RemoteCustomers newRemoteCustomers = new RemoteCustomers();
-
-        try {
-            newRemoteCustomers.setFirstname(firstname);
-            newRemoteCustomers.setLastname(lastname);
-            newRemoteCustomers.setAddress(address);
-            newRemoteCustomers.setEmail(email);
-            newRemoteCustomers.setPhoneNo(phoneNo);
-            newRemoteCustomers.setUsername(username);
-            newRemoteCustomers.setPassword(password);
-            newRemoteCustomers.setDp(dp.getBytes());
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    RemoteCustomers newRemoteCustomers(@RequestParam ("firstname") String firstname,
+                                       @RequestParam ("lastname") String lastname,
+                                       @RequestParam ("address") String address,
+                                       @RequestParam ("email") String email,
+                                       @RequestParam ("phoneNo") String phoneNo,
+                                       @RequestParam ("username") String username,
+                                       @RequestParam ("password") String password,
+                                       @RequestParam ("dp") MultipartFile dp){
+        RemoteCustomers newRemoteCustomers=new RemoteCustomers();
+        newRemoteCustomers.setFirstname(firstname);
+        newRemoteCustomers.setLastname(lastname);
+        newRemoteCustomers.setAddress(address);
+        newRemoteCustomers.setEmail(email);
+        newRemoteCustomers.setPhoneNo(phoneNo);
+        newRemoteCustomers.setUsername(username);
+        newRemoteCustomers.setPassword(password);
+        if (dp != null) {
+            try {
+                newRemoteCustomers.setDp(dp.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return remoteCustomerRepository.save(newRemoteCustomers);
     }

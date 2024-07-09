@@ -61,4 +61,6 @@ public class SalesAndRevenueController {
     public List<SalesAndRevenues> getAllSalesAndRevenues() {
         return salesAndRevenueRepository.findAll();
     }
+
+
 }
