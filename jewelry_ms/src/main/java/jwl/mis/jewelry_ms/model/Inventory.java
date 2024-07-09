@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class Inventory {
     @Id
-    @Column(name = "item_id")
+    //@Column(name = "item_id")
     private String itemId;
     private String itemName;
     private String type;
@@ -23,7 +23,7 @@ public class Inventory {
     private byte[] image;
 
     public String getItem_id() {
-        return item_id;
+        return itemId;
     }
 
 
