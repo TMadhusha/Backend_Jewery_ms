@@ -22,5 +22,19 @@ public class RemoteCustomers {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] dp;
 
+    public RemoteCustomers(Long cus_id, String firstname, String lastname, String email, String address, String phoneNo, String username, String password, byte[] dp) {
+        this.cus_id = cus_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.address = address;
+        this.phoneNo = phoneNo;
+        this.username = username;
+        this.password = password;
+        this.dp = dp;
+    }
 
+    public RemoteCustomers() {
+
+    }
 }
