@@ -14,5 +14,5 @@ public class MyCart {
     private String username;
     private String itemName;
     private int quantity;
-    private double totalPrice;
+    private int totalPrice;
 }

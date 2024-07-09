@@ -1,11 +1,10 @@
 package jwl.mis.jewelry_ms.repository;
 
 import jwl.mis.jewelry_ms.model.MyCart;
-import jwl.mis.jewelry_ms.model.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import java.util.List;
 
-public interface MyCartRepository extends JpaRepository<MyCart,Long> {
-    Optional<MyCart> findByUsername(String username);
+public interface MyCartRepository extends JpaRepository<MyCart, Integer> {
+    List<MyCart> findByUsername(String username);
 }

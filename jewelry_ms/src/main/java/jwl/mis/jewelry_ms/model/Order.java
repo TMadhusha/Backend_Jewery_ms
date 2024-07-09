@@ -23,8 +23,8 @@ public class Order {
     private long orderId; // Use camelCase for consistency
 
     @ManyToOne
-    @JoinColumn(name = "cus_id") // Name of the foreign key column in the orders table
-    private Customer customer;
+    @JoinColumn(name = "username") // Name of the foreign key column in the orders table
+    private RemoteCustomers remoteCustomers;
 
 
     @Temporal(TemporalType.DATE)
@@ -46,9 +46,10 @@ public class Order {
     @Column(name = "pickup_date")
     private Date PickupDate;
 
-    public Order(long orderId, Customer customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress, Date pickupDate) {
+    public Order(long orderId, RemoteCustomers customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress, Date pickupDate) {
         this.orderId = orderId;
-        this.customer = customer;
+
+        this.remoteCustomers= remoteCustomers;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
