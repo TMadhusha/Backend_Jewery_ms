@@ -48,10 +48,13 @@ public class CartController {
         return cartRepository.findAll();
     }
 
-    @GetMapping("/getCartById/{Id}")
-    Cart getByID(@PathVariable Long Id){
-        return cartRepository.findById(Id)
-                .orElseThrow(()-> new CartNotFoundException(Id));
+    @GetMapping("/getCartById/{username}")
+    List<Cart> getByUsername(@PathVariable String username) {
+        List<Cart> carts = cartRepository.findByUsername(username);
+        if (carts.isEmpty()) {
+            throw new CartNotFoundException(username);
+        }
+        return carts;
     }
 
     @PutMapping("/putCart/{Id}")
