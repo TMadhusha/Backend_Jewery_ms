@@ -4,6 +4,8 @@ import jwl.mis.jewelry_ms.exception.CartNotFoundException;
 import jwl.mis.jewelry_ms.model.Cart;
 import jwl.mis.jewelry_ms.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,13 +50,23 @@ public class CartController {
         return cartRepository.findAll();
     }
 
+//    @GetMapping("/getCartById/{username}")
+//    List<Cart> getByUsername(@PathVariable String username) {
+//        List<Cart> carts = cartRepository.findByUsername(username);
+//        if (carts.isEmpty()) {
+//            throw new CartNotFoundException(username);
+//        }
+//        return carts;
+//    }
+
     @GetMapping("/getCartById/{username}")
-    List<Cart> getByUsername(@PathVariable String username) {
-        List<Cart> carts = cartRepository.findByUsername(username);
-        if (carts.isEmpty()) {
-            throw new CartNotFoundException(username);
+    public ResponseEntity<List<Cart>> getByUsername(@PathVariable String username) {
+        try {
+            List<Cart> carts = cartRepository.findByUsername(username);
+            return ResponseEntity.ok(carts);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return carts;
     }
 
     @PutMapping("/putCart/{Id}")
