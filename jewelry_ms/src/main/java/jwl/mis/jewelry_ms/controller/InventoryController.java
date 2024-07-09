@@ -57,4 +57,9 @@ public class InventoryController {
         return "Product with ID "+item_id+ " has been deleted successfully";
     }
 
+    @GetMapping("/inventory/type/{type}")
+    List<Inventory> getInventoryByType(@PathVariable String type) {
+        return inventoryRepository.findByType(type);
+    }
+
 }

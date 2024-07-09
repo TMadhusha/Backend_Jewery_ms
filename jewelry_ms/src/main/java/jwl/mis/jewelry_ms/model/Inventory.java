@@ -25,9 +25,6 @@ public class Inventory {
         return item_id;
     }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
-    }
 
     public String getItemName() {
         return itemName;
