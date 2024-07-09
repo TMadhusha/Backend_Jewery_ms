@@ -23,7 +23,7 @@ public class Inventory {
     private byte[] image;
 
     public String getItem_id() {
-        return item_id;
+        return itemId;
     }
 
 

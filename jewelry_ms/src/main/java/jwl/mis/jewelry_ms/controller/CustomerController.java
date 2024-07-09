@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -62,6 +63,8 @@ public class CustomerController {
         Long nextId = (maxId == null) ? 1 : maxId + 1; // If no customers, start with ID 1
         return ResponseEntity.ok(nextId);
     }
+
+
 
 
 
