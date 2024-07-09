@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class MyCart {
     @Id
+
     private Long myCartId;
     private String username;
     private String itemName;
