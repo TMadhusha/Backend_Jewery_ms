@@ -5,6 +5,7 @@ import jwl.mis.jewelry_ms.model.Customer;
 import jwl.mis.jewelry_ms.repository.CustomerRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,4 +55,14 @@ public class CustomerController {
         customerRepository.deleteById(cus_id);
         return "Customer with id "+ cus_id +"has been deleted success.";
     }
+
+    @GetMapping("/nextCustomerId")
+    public ResponseEntity<Long> getNextCustomerId() {
+        Long maxId = customerRepository.findMaxCustomerId();
+        Long nextId = (maxId == null) ? 1 : maxId + 1; // If no customers, start with ID 1
+        return ResponseEntity.ok(nextId);
+    }
+
+
+
 }

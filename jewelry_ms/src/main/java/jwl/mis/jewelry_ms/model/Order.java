@@ -43,9 +43,10 @@ public class Order {
     @Column(name = "billing_address") // Map to the actual column name in the database
     private String billingAddress;
 
+    @Column(name = "pickup_date")
+    private Date PickupDate;
 
-    // Constructors
-    public Order(long orderId, Customer customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress) {
+    public Order(long orderId, Customer customer, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress, Date pickupDate) {
         this.orderId = orderId;
         this.customer = customer;
         this.orderDate = orderDate;
@@ -53,6 +54,7 @@ public class Order {
         this.orderStatus = orderStatus;
         this.paymentMethod = paymentMethod;
         this.billingAddress = billingAddress;
+        PickupDate = pickupDate;
     }
 
     public Order() {
