@@ -20,15 +20,15 @@ public class Order {
     private long orderId;
 
 
-    @Column(name = "cus_id")
-    private Long cus_id;
+    @Column(name = "username")
+    private Long username;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "order_date")
     private Date orderDate;
 
-    @Column(name = "total_amount")
-    private double totalAmount;
+    @Column(name = "subtotal")
+    private double subtotal;
 
     @Column(name = "order_status")
     private String orderStatus;
@@ -39,14 +39,15 @@ public class Order {
     @Column(name = "billing_address")
     private String billingAddress;
 
-    public Order(long orderId, Long cus_id, Date orderDate, double totalAmount, String orderStatus, String paymentMethod, String billingAddress) {
+    public Order(long orderId, Long username, Date orderDate, double subtotal, String orderStatus, String paymentMethod, String billingAddress) {
         this.orderId = orderId;
-        this.cus_id = cus_id;
+        this.username = username;
         this.orderDate = orderDate;
-        this.totalAmount = totalAmount;
+        this.subtotal = subtotal;
         this.orderStatus = orderStatus;
         this.paymentMethod = paymentMethod;
         this.billingAddress = billingAddress;
+
     }
 
     public Order() {
