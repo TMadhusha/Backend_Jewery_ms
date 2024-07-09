@@ -1,7 +1,7 @@
 package jwl.mis.jewelry_ms.repository;
 
-import jwl.mis.jewelry_ms.model.Cart;
+import jwl.mis.jewelry_ms.model.MyCart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartRepository extends JpaRepository<Cart,Long> {
+public interface MyCartRepo extends JpaRepository<MyCart,Long> {
 }
