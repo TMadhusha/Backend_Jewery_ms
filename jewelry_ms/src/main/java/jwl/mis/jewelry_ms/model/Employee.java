@@ -18,6 +18,10 @@ public class Employee {
     private String phoneNo;
     private String role;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
     public String getEmp_id() {
         return emp_id;
     }
@@ -90,4 +94,11 @@ public class Employee {
         this.role = role;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

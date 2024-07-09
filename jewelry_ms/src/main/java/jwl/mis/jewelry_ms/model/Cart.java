@@ -19,7 +19,8 @@ public class Cart {
     private String itemName;
 
     private String username;
-
+    private String type;
+    private String description;
     private double sellingPrice;
     private int quantity;
     private double totalPrice;

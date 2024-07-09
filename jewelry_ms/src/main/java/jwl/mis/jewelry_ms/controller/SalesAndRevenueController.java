@@ -23,4 +23,5 @@ public class SalesAndRevenueController {
         return salesAndRevenueRepository.findAll();
     }
 
+
 }
