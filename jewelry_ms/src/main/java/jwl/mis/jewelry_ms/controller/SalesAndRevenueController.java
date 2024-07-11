@@ -33,7 +33,7 @@ public class SalesAndRevenueController {
             salesAndRevenueRepository.save(transaction);
 
             // Update inventory stock
-            updateInventoryStock(transaction.getItemId(), transaction.getQty());
+            updateInventoryStock(transaction.getInventory().getItem_id(), transaction.getQty());
 
             return "Transaction saved successfully";
         } catch (Exception e) {
