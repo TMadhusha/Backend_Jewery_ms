@@ -14,7 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ExpenseController {
     @Autowired
     private ExpenseRepository expenseRepository;

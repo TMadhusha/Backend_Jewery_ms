@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CartController {
     @Autowired
     private CartRepository cartRepository;
@@ -93,14 +94,25 @@ public class CartController {
         }
     }
 
-    @DeleteMapping("/deleteCart/{Id}")
-    String deleteCart(@PathVariable Long Id){
-        if(!cartRepository.existsById(Id)){
-            throw new CartNotFoundException(Id);
+    @DeleteMapping("/deleteCart/{id}")
+    String deleteCart(@PathVariable Long id){
+        if(!cartRepository.existsById(id)){
+            throw new CartNotFoundException(id);
         }
-        cartRepository.deleteById(Id);
-        return "Cart item with id "+ Id +" has been deleted sucessfully";
+        cartRepository.deleteById(id);
+        return "Cart item with id "+ id +" has been deleted sucessfully";
     }
+
+    @DeleteMapping("/deleteMyCart/{username}")
+    String deleteMyCart(@PathVariable String username){
+        if(!cartRepository.existsByUsername(username)){
+            throw  new CartNotFoundException(username);
+        }else{
+            cartRepository.deleteByUsername(username);
+            return "Cart item with username "+ username +" has been deleted sucessfully";
+        }
+    }
+
 
 
 }

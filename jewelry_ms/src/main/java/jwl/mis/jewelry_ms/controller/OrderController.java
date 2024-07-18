@@ -14,7 +14,8 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrderController {
 
     @Autowired
