@@ -53,11 +53,17 @@
             <artifactId>xbean-reflect</artifactId>
             <version>3.7</version>
         </dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.apache.velocity</groupId>-->
+<!--			<artifactId>velocity</artifactId>-->
+<!--			<version>1.7</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>2.3</version> <!-- Replace with the latest secure version -->
 		</dependency>
+
 
 
 	</dependencies>
