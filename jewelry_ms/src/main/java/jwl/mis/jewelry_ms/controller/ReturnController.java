@@ -1,53 +1,63 @@
 package jwl.mis.jewelry_ms.controller;
 
-
 import jwl.mis.jewelry_ms.model.Customer;
-import jwl.mis.jewelry_ms.model.Order;
 import jwl.mis.jewelry_ms.model.Returns;
+import jwl.mis.jewelry_ms.model.SalesAndRevenues;
 import jwl.mis.jewelry_ms.repository.CustomerRepository;
-import jwl.mis.jewelry_ms.repository.OrderRepository;
 import jwl.mis.jewelry_ms.repository.ReturnRepository;
+import jwl.mis.jewelry_ms.repository.SalesAndRevenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@CrossOrigin( "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReturnController {
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private ReturnRepository returnRepository;
+    private SalesAndRevenueRepository salesAndRevenueRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/order/{orderId}")
-    public Optional<Order> getOrderDetails(@PathVariable Long orderId) {
-        return Optional.ofNullable(orderRepository.findByOrderId(orderId));
+    @Autowired
+    private ReturnRepository returnRepository;
+
+    @GetMapping("/sales/{transactionId}")
+    public ResponseEntity<?> getSalesDetails(@PathVariable Long transactionId) {
+        Optional<SalesAndRevenues> salesDetailsOptional = salesAndRevenueRepository.findByTransactionIdWithCustomer(transactionId);
+        if (salesDetailsOptional.isPresent()) {
+            return ResponseEntity.ok(salesDetailsOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/postreturns")
-    public Returns createReturns(@RequestBody Returns returns) {
-        if (returns.getCustomer() == null) {
-            throw new RuntimeException("Customer is not provided in the request");
-        }
-        if (returns.getOrder() == null) {
-            throw new RuntimeException("Order is not provided in the request");
-        }
+    public ResponseEntity<String> submitReturnRequest(@RequestBody Returns returnRequest) {
+        try {
+            // Retrieve customer and salesAndRevenues details from their respective repositories
+            Optional<Customer> customerOptional = customerRepository.findById(returnRequest.getCustomer().getCus_id());
+            Optional<SalesAndRevenues> salesAndRevenuesOptional = salesAndRevenueRepository.findById(returnRequest.getSalesAndRevenues().getTransactionId());
 
-        Optional<Customer> customerOpt = customerRepository.findById(returns.getCustomer().getCus_id());
-        Optional<Order> orderOpt = orderRepository.findById(returns.getOrder().getOrderId());
+            if (!customerOptional.isPresent() || !salesAndRevenuesOptional.isPresent()) {
+                return ResponseEntity.badRequest().body("Invalid customer or sales transaction ID");
+            }
 
-        if (customerOpt.isPresent() && orderOpt.isPresent()) {
-            returns.setCustomer(customerOpt.get());
-            returns.setOrder(orderOpt.get());
-            return returnRepository.save(returns);
-        } else {
-            throw new RuntimeException("Customer or Order not found");
+            // Set the retrieved entities in the return request
+            returnRequest.setCustomer(customerOptional.get());
+            returnRequest.setSalesAndRevenues(salesAndRevenuesOptional.get());
+
+            // Save the return request
+            returnRepository.save(returnRequest);
+
+            return ResponseEntity.ok("Return request submitted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting return request: " + e.getMessage());
         }
     }
 }
