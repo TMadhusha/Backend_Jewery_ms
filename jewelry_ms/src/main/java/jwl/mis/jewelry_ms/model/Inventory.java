@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 public class Inventory {
     @Id
-    @Column(name = "item_id")
-    private String itemId;
+    private String item_id;
     private String itemName;
     private String type;
     private double actualPrice;
@@ -22,9 +21,15 @@ public class Inventory {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
 
+<<<<<<< HEAD
     public String getItem_id() {
         return itemId;
     }
+=======
+//    public String getItem_id() {
+//        return itemId;
+//    }
+>>>>>>> main
 
 
     public String getItemName() {

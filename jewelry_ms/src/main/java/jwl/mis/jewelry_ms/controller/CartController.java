@@ -4,6 +4,8 @@ import jwl.mis.jewelry_ms.exception.CartNotFoundException;
 import jwl.mis.jewelry_ms.model.Cart;
 import jwl.mis.jewelry_ms.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CartController {
     @Autowired
     private CartRepository cartRepository;
@@ -48,10 +51,30 @@ public class CartController {
         return cartRepository.findAll();
     }
 
-    @GetMapping("/getCartById/{Id}")
-    Cart getByID(@PathVariable Long Id){
-        return cartRepository.findById(Id)
-                .orElseThrow(()-> new CartNotFoundException(Id));
+//    @GetMapping("/getCartById/{username}")
+//    List<Cart> getByUsername(@PathVariable String username) {
+//        List<Cart> carts = cartRepository.findByUsername(username);
+//    List<Cart> getAllCart(){
+//        return cartRepository.findAll();
+//    }
+//
+//    @GetMapping("/getCartById/{username}")
+//    List<Cart> getByUsername(@PathVariable String username) {
+//       // List<Cart> carts = cartRepository.findByUsername(username);
+//        if (carts.isEmpty()) {
+//            throw new CartNotFoundException(username);
+//        }
+//        return carts;
+//    }
+
+    @GetMapping("/getCartById/{username}")
+    public ResponseEntity<List<Cart>> getByUsername(@PathVariable String username) {
+        try {
+            List<Cart> carts = cartRepository.findByUsername(username);
+            return ResponseEntity.ok(carts);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping("/putCart/{Id}")
@@ -71,14 +94,25 @@ public class CartController {
         }
     }
 
-    @DeleteMapping("/deleteCart/{Id}")
-    String deleteCart(@PathVariable Long Id){
-        if(!cartRepository.existsById(Id)){
-            throw new CartNotFoundException(Id);
+    @DeleteMapping("/deleteCart/{id}")
+    String deleteCart(@PathVariable Long id){
+        if(!cartRepository.existsById(id)){
+            throw new CartNotFoundException(id);
         }
-        cartRepository.deleteById(Id);
-        return "Cart item with id "+ Id +" has been deleted sucessfully";
+        cartRepository.deleteById(id);
+        return "Cart item with id "+ id +" has been deleted sucessfully";
     }
+
+    @DeleteMapping("/deleteMyCart/{username}")
+    String deleteMyCart(@PathVariable String username){
+        if(!cartRepository.existsByUsername(username)){
+            throw  new CartNotFoundException(username);
+        }else{
+            cartRepository.deleteByUsername(username);
+            return "Cart item with username "+ username +" has been deleted sucessfully";
+        }
+    }
+
 
 
 }

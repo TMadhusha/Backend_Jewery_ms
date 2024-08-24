@@ -14,7 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RemoteCustomerController {
     @Autowired
     private RemoteCustomerRepository remoteCustomerRepository;

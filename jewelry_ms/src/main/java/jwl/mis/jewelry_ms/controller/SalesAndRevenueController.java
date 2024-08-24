@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SalesAndRevenueController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class SalesAndRevenueController {
             salesAndRevenueRepository.save(transaction);
 
             // Update inventory stock
-            updateInventoryStock(transaction.getItemId(), transaction.getQty());
+            updateInventoryStock(transaction.getInventory().getItem_id(), transaction.getQty());
 
             return "Transaction saved successfully";
         } catch (Exception e) {

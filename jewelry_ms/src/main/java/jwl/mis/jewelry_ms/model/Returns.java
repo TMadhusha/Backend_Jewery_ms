@@ -1,7 +1,6 @@
 package jwl.mis.jewelry_ms.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,14 +25,21 @@ public class Returns {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "transaction_id")
+    private SalesAndRevenues salesAndRevenues;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Inventory inventory;
 
-    public Returns(long return_id, String name, String contact, String purchaseDate, String returnReason, String comments, String itemCondition, String returnDate, Customer customer, Order order, Inventory inventory) {
+    // Default constructor
+    public Returns() {
+    }
+
+    // Parameterized constructor
+
+
+    public Returns(long return_id, String name, String contact, String purchaseDate, String returnReason, String comments, String itemCondition, String returnDate, Customer customer, SalesAndRevenues salesAndRevenues, Inventory inventory) {
         this.return_id = return_id;
         this.name = name;
         this.contact = contact;
@@ -43,11 +49,7 @@ public class Returns {
         this.itemCondition = itemCondition;
         this.returnDate = returnDate;
         this.customer = customer;
-        this.order = order;
+        this.salesAndRevenues = salesAndRevenues;
         this.inventory = inventory;
-    }
-
-    public Returns() {
-
     }
 }
