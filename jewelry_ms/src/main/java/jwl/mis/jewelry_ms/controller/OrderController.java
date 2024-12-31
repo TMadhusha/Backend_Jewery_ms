@@ -1,12 +1,15 @@
 package jwl.mis.jewelry_ms.controller;
 
 
+import jwl.mis.jewelry_ms.Service.PaymentService;
 import jwl.mis.jewelry_ms.model.Order;
 import jwl.mis.jewelry_ms.model.OrderItem;
 import jwl.mis.jewelry_ms.model.RemoteCustomers;
 import jwl.mis.jewelry_ms.repository.OrderItemRepository;
 import jwl.mis.jewelry_ms.repository.OrderRepository;
+import jwl.mis.jewelry_ms.response.PaymentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +26,9 @@ public class OrderController {
 
     @Autowired
     private OrderItemRepository orderItemRepository;
+
+//    @Autowired
+//    private PaymentService paymentService;
 
 
     @GetMapping("/getorder")
@@ -65,6 +71,8 @@ public class OrderController {
         // Assuming the frontend sends complete data for the order
         return orderRepository.save(order);
     }
+
+
 
 
 

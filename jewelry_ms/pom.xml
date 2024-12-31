@@ -64,6 +64,12 @@
 			<version>2.3</version> <!-- Replace with the latest secure version -->
 		</dependency>
 
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>20.62.0</version> <!-- Replace with the latest secure version -->
+		</dependency>
+
 
 
 	</dependencies>
