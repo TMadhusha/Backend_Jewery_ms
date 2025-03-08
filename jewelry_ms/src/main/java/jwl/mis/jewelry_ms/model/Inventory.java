@@ -21,9 +21,15 @@ public class Inventory {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
 
+<<<<<<< HEAD
+    public String getItem_id() {
+        return itemId;
+    }
+=======
 //    public String getItem_id() {
 //        return itemId;
 //    }
+>>>>>>> main
 
 
     public String getItemName() {

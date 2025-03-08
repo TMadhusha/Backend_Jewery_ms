@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -18,11 +20,13 @@ public class RemoteCustomers {
     private String phoneNo;
     private String username;
     private String password;
+    @Temporal(TemporalType.DATE)
+    private Date registration_date;
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] dp;
 
-    public RemoteCustomers(Long cus_id, String firstname, String lastname, String email, String address, String phoneNo, String username, String password, byte[] dp) {
+    public RemoteCustomers(Long cus_id, String firstname, String lastname, String email, String address, String phoneNo, String username, String password, Date registration_date, byte[] dp) {
         this.cus_id = cus_id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -31,6 +35,7 @@ public class RemoteCustomers {
         this.phoneNo = phoneNo;
         this.username = username;
         this.password = password;
+        this.registration_date = registration_date;
         this.dp = dp;
     }
 
